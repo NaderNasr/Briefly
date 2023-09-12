@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Hero from './components/Hero'
 import Demo from './components/Demo'
 import { Jelly } from '@uiball/loaders'
+import Hotjar from '@hotjar/browser';
 
 import './App.css'
 
@@ -9,6 +10,11 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [percentage, setPercentage] = useState(0);
 
+  const siteId = 3650764;
+  const hotjarVersion = 6;
+  useEffect(() => {
+    Hotjar.init(siteId, hotjarVersion);
+  }, []);
   useEffect(() => {
     const minDelay = 2500
     const maxDelay = 7000
@@ -32,7 +38,8 @@ const App = () => {
       setIsLoading(false)
     }, randomDelay)
   }, [])
-console.log(percentage.toFixed(0))
+  // console.log(percentage.toFixed(0))
+
   return (
     <main>
       <div className='main'>
